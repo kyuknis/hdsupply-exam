@@ -32,11 +32,6 @@ public class ToDoControllerTests {
     }
 
     @Test
-    public void getAllToDosShouldReturnAllToDos() {
-
-    }
-
-    @Test
     public void getToDoShouldReturnSingleToDo() {
 
         ToDo controlToDo = new ToDo();
@@ -96,58 +91,5 @@ public class ToDoControllerTests {
         assertEquals(date, requestResult.getBody().getCompletedAt());
 
     }
-
-    @Test
-    public void updateToDoShouldUpdateToDo() {
-
-        ToDo toDo = new ToDo();
-        String title = "Title";
-        Date date = new Date();
-
-        toDo.setTitle(title);
-        toDo.setCreatedOn(date);
-        toDo.setDueBy(date);
-        toDo.setCompletedAt(date);
-
-        
-        String url = "http://localhost:" + portNumber + "/api/v1/todo";
-        ResponseEntity<ToDo> requestResult = this.restTemplate.postForEntity(url, toDo, ToDo.class, toDo);
-
-        title = "This is the new title";
-        toDo.setTitle(title);
-        ToDo updatedResult = this.restTemplate.patchForObject(url, toDo, ToDo.class);
-
-        assertEquals(requestResult.getBody().getId(), updatedResult.getId());
-        assertEquals(requestResult.getBody().getTitle(), updatedResult.getTitle());
-        assertEquals(requestResult.getBody().getCreatedOn(), updatedResult.getCreatedOn());
-        assertEquals(requestResult.getBody().getDueBy(), updatedResult.getDueBy());
-        assertEquals(requestResult.getBody().getCompletedAt(), updatedResult.getCompletedAt());
-
-    }
-
-    // @Test
-    // public void updateToDoShouldReturnNotFoundWhenEntityNotFound() {
-
-    //     ToDo controlToDo = new ToDo();
-    //     String title = "Title";
-    //     Date date = new Date();
-
-    //     controlToDo.setTitle(title);
-    //     controlToDo.setCreatedOn(date);
-    //     controlToDo.setDueBy(date);
-    //     controlToDo.setCompletedAt(date);
-
-    //     String url = "http://localhost:" + portNumber + "/api/v1/todo/9999";
-    //     ToDo requestResult = this.restTemplate.patchForObject(url, controlToDo, ToDo.class);
-
-    //     title = "The new title";
-    //     controlToDo.setTitle(title);
-        
-    //     url = "http://localhost:" + portNumber + "/api/v1/todo/" + requestResult.getBody().getId();
-    //     this.restTemplate.patchForObject(url, controlToDo, ToDo.class);
-
-    //     assertEquals(HttpStatus.ACCEPTED, requestResult.getStatusCode());
-
-    // }
 
 }
