@@ -42,7 +42,6 @@ public class ToDoControllerTests {
         controlToDo.setCreatedOn(date);
         controlToDo.setDueBy(date);
         controlToDo.setCompletedAt(date);
-
         
         String url = "http://localhost:" + portNumber + "/api/v1/todo";
         ResponseEntity<ToDo> createdToDo = this.restTemplate.postForEntity(url, controlToDo, ToDo.class, controlToDo);
@@ -79,7 +78,6 @@ public class ToDoControllerTests {
         controlToDo.setCreatedOn(date);
         controlToDo.setDueBy(date);
         controlToDo.setCompletedAt(date);
-
         
         String url = "http://localhost:" + portNumber + "/api/v1/todo";
         ResponseEntity<ToDo> requestResult = this.restTemplate.postForEntity(url, controlToDo, ToDo.class, controlToDo);
