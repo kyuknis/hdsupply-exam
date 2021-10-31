@@ -2,8 +2,8 @@ package com.yuknis.exam.todo.data;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import java.util.Date;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -83,6 +83,11 @@ public class ToDoRepositoryTests {
         assertEquals(toDo.getCreatedOn(), foundToDo.getCreatedOn());
         assertEquals(toDo.getDueBy(), foundToDo.getDueBy());
 
+    }
+
+    @AfterEach
+    private void resetDatabase() {
+        toDoRepository.deleteAll();
     }
 
 }
