@@ -8,6 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.Data;
 
@@ -38,19 +42,22 @@ public class ToDo {
      * 
      */
     @Column(name = "created_on")
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     Date createdOn;
 
     /**
      * 
      */
     @Column(name = "due_by")
+    @Temporal(TemporalType.TIMESTAMP)
     Date dueBy;
 
     /**
      * 
      */
     @Column(name = "completed_at")
+    @Temporal(TemporalType.TIMESTAMP)
     Date completedAt;
-
     
 }
