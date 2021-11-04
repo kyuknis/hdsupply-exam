@@ -2,6 +2,8 @@ package com.yuknis.exam.todo.data;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Date;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -23,14 +25,13 @@ public class ToDoRepositoryTests {
         ToDo toDo = new ToDo();
         toDo.setTitle(title);
         toDo.setCompletedAt(date);
-        toDo.setCreatedOn(date);
         toDo.setDueBy(date);
         toDo = toDoRepository.save(toDo);
 
         assertNotNull(toDo.getId());
         assertEquals("Test", toDo.getTitle());
         assertEquals(date, toDo.getCompletedAt());
-        assertEquals(date, toDo.getCreatedOn());
+        assertTrue(toDo.getCreatedOn() instanceof Date);
         assertEquals(date, toDo.getDueBy());
 
     }
