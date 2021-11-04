@@ -2,6 +2,7 @@ package com.yuknis.exam.todo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Date;
 import com.yuknis.exam.todo.data.ToDo;
@@ -83,8 +84,8 @@ public class ToDoControllerTests {
         ResponseEntity<ToDo> requestResult = this.restTemplate.postForEntity(url, controlToDo, ToDo.class, controlToDo);
 
         assertNotNull(requestResult.getBody().getId());
+        assertTrue(requestResult.getBody().getCreatedOn() instanceof Date);
         assertEquals(title, requestResult.getBody().getTitle());
-        assertEquals(date, requestResult.getBody().getCreatedOn());
         assertEquals(date, requestResult.getBody().getDueBy());
         assertEquals(date, requestResult.getBody().getCompletedAt());
 
