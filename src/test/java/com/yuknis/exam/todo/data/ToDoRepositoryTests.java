@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Date;
+import java.util.Optional;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,20 +47,20 @@ public class ToDoRepositoryTests {
         ToDo toDo = new ToDo();
         toDo.setTitle(title);
         toDo.setCompletedAt(date);
-        toDo.setCreatedOn(date);
         toDo.setDueBy(date);
         toDo = toDoRepository.save(toDo);
 
-        title = "The new title";
-        Long originalId = toDo.getId();
-        toDo.setTitle(title);
-        toDo = toDoRepository.save(toDo);
+        Optional<ToDo> foundToDo = toDoRepository.findById(toDo.getId());
 
-        assertEquals(originalId, toDo.getId());
-        assertEquals(title, toDo.getTitle());
-        assertEquals(date, toDo.getCompletedAt());
-        assertEquals(date, toDo.getCreatedOn());
-        assertEquals(date, toDo.getDueBy());
+        title = "The new title";
+        foundToDo.get().setTitle(title);
+        toDo = toDoRepository.save(foundToDo.get());
+
+        assertEquals(toDo.getId(), foundToDo.get().getId());
+        assertEquals(title, foundToDo.get().getTitle());
+        assertEquals(toDo.getCompletedAt(), foundToDo.get().getCompletedAt());
+        assertEquals(toDo.getCreatedOn(), toDo.getCreatedOn());
+        assertEquals(toDo.getDueBy(), foundToDo.get().getDueBy());
 
     }
 
