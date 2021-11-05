@@ -16,7 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class ToDoControllerTests {
+class ToDoControllerTests {
 
     @LocalServerPort
     private int portNumber;
@@ -28,12 +28,12 @@ public class ToDoControllerTests {
     private ToDoController toDoController;
 
     @Test
-    public void contextLoads() throws Exception {
+    void contextLoads() throws Exception {
         assertNotNull(this.toDoController);
     }
 
     @Test
-    public void getToDoShouldReturnSingleToDo() {
+    void getToDoShouldReturnSingleToDo() {
 
         ToDo controlToDo = new ToDo();
         String title = "Title";
@@ -59,7 +59,7 @@ public class ToDoControllerTests {
     }
 
     @Test
-    public void getToDoShouldReturnNotFoundWhenEntityNotFound() {
+    void getToDoShouldReturnNotFoundWhenEntityNotFound() {
         
         String url = "http://localhost:" + portNumber + "/api/v1/todo/" + 99999;
         ResponseEntity<ToDo> requestResult = this.restTemplate.getForEntity(url, ToDo.class);
@@ -69,7 +69,7 @@ public class ToDoControllerTests {
     }
 
     @Test
-    public void postToDoShouldReturnSavedToDo() {
+    void postToDoShouldReturnSavedToDo() {
 
         ToDo controlToDo = new ToDo();
         String title = "Title";

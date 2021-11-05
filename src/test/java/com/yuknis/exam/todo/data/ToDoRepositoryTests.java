@@ -13,13 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class ToDoRepositoryTests {
+class ToDoRepositoryTests {
     
     @Autowired
     private ToDoRepository toDoRepository;
 
     @Test
-    public void repositorySaveShouldStoreToDo() {
+    void repositorySaveShouldStoreToDo() {
 
         String title = "Test";
         Date date = new Date();
@@ -39,7 +39,7 @@ public class ToDoRepositoryTests {
     }
 
     @Test
-    public void repositorySaveShouldUpdateToDo() {
+    void repositorySaveShouldUpdateToDo() {
 
         String title = "Test";
         Date date = new Date();
@@ -65,7 +65,7 @@ public class ToDoRepositoryTests {
     }
 
     @Test
-    public void repositoryFindShouldFindToDo() {
+    void repositoryFindShouldFindToDo() {
 
         String title = "Test";
         Date date = new Date();
