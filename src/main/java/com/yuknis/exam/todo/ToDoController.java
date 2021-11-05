@@ -154,7 +154,7 @@ public class ToDoController {
             ToDo toDo = entity.get();
             toDo.setCompletedAt(new Date());
             toDo = toDoRepository.save(toDo);
-            return new ResponseEntity<ToDo>(toDo, HttpStatus.CREATED);
+            return new ResponseEntity<>(toDo, HttpStatus.ACCEPTED);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
