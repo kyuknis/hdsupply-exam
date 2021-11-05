@@ -3,6 +3,7 @@ package com.yuknis.exam.todo;
 import java.util.Date;
 import java.util.Optional;
 import com.yuknis.exam.todo.data.ToDo;
+import com.yuknis.exam.todo.data.ToDoDTO;
 import com.yuknis.exam.todo.data.ToDoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -73,9 +74,15 @@ public class ToDoController {
         consumes = "application/json",
         produces = "application/json"
     )
-    public ResponseEntity<ToDo> createToDo(@RequestBody ToDo toDo) {
+    public ResponseEntity<ToDo> createToDo(@RequestBody ToDoDTO toDo) {
 
-        ToDo entity = toDoRepository.save(toDo);
+        ToDo entity = ToDo.builder()
+        .title(toDo.getTitle())
+        .completedAt(toDo.getCompletedAt())
+        .dueBy(toDo.getDueBy())
+        .build();
+
+        entity = toDoRepository.save(entity);
         return new ResponseEntity<>(entity, HttpStatus.CREATED);
 
     }
@@ -93,7 +100,7 @@ public class ToDoController {
         consumes = "application/json",
         produces = "application/json"
     )
-    public ResponseEntity<ToDo> updateToDo(@PathVariable Long id, @RequestBody ToDo toDo) {
+    public ResponseEntity<ToDo> updateToDo(@PathVariable Long id, @RequestBody ToDoDTO toDo) {
 
         Optional<ToDo> entity = toDoRepository.findById(id);
 

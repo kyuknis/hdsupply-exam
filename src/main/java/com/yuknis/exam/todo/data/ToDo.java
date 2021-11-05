@@ -1,7 +1,6 @@
 package com.yuknis.exam.todo.data;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,14 +10,20 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 
  * 
  */
+@AllArgsConstructor
+@Builder
 @Data
 @Entity
+@NoArgsConstructor
 @Table(name = "todos")
 public class ToDo {
 
