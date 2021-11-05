@@ -7,7 +7,11 @@ import com.yuknis.exam.todo.data.ToDoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,8 +35,7 @@ public class ToDoController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(
-        method = RequestMethod.GET,
+    @GetMapping(
         produces = "application/json"
     )
     public ResponseEntity<Iterable<ToDo>> getAllToDos() {
@@ -49,9 +52,8 @@ public class ToDoController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(
+    @GetMapping(
         value = "/{id}",
-        method = RequestMethod.GET,
         produces = "application/json"
     )
     public ResponseEntity<ToDo> getToDo(@PathVariable Long id) {
@@ -68,8 +70,7 @@ public class ToDoController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(
-        method = RequestMethod.POST,
+    @PostMapping(
         consumes = "application/json",
         produces = "application/json"
     )
@@ -88,8 +89,7 @@ public class ToDoController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(
-        method = RequestMethod.PATCH,
+    @PatchMapping(
         value = "/{id}",
         consumes = "application/json",
         produces = "application/json"
@@ -116,8 +116,7 @@ public class ToDoController {
      * 
      * @param id
      */
-    @RequestMapping(
-        method = RequestMethod.DELETE,
+    @DeleteMapping(
         value = "/{id}"
     )
     public void deleteToDo(@PathVariable Long id) {
