@@ -137,8 +137,7 @@ public class ToDoController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(
-        method = RequestMethod.PATCH,
+    @PatchMapping(
         value = "/{id}/complete"
     )
     public ResponseEntity<ToDo> completeToDo(@PathVariable Long id) {
